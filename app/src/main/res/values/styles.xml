@@ -6,10 +6,24 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionOverflowMenuStyle">@style/menu</item>
+        <item name="android:actionMenuTextAppearance">@style/menu.text</item>
+
     </style>
+
     <style name="Theme.Start" parent="android:Theme">
         <item name="android:windowBackground">@drawable/launcher</item>
         <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="menu" parent="@style/Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">0dip</item>
+        <item name="android:popupBackground">?attr/colorPrimary</item>
+    </style>
+
+    <style name="menu.text">
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 </resources>
