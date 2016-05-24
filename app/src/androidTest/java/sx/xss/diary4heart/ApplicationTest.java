@@ -1,4 +1,4 @@
-package sx.xss.workspace;
+package sx.xss.diary4heart;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
