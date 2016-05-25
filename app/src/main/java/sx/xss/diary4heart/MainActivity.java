@@ -9,6 +9,7 @@ import android.view.Menu;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import sx.xss.adapter.RecycleViewAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         recycleview.setHasFixedSize(true);
         recycleview.setLayoutManager(new LinearLayoutManager(this));
-
+        recycleview.setAdapter(new RecycleViewAdapter(MainActivity.this));
 
     }
 
