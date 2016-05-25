@@ -2,9 +2,11 @@ package sx.xss.diary4heart;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.widget.TextView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -12,9 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.tv)
-    TextView tv;
-
+    @BindView(R.id.recycleview)
+    RecyclerView recycleview;
 
 
     @Override
@@ -25,12 +26,15 @@ public class MainActivity extends AppCompatActivity {
 
         initToolBar(toolbar, "觅心日记");
 
+        recycleview.setHasFixedSize(true);
+        recycleview.setLayoutManager(new LinearLayoutManager(this));
+
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 

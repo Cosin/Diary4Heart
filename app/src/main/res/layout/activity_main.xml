@@ -10,16 +10,17 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:background="?attr/colorPrimary"
-        app:titleTextColor="#fff"
         android:minHeight="?attr/actionBarSize"
-         />
+        app:theme="@style/Toolbar" />
 
-
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleview"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:divider="#000"
+        android:dividerHeight="10dp"
+        >
+    </android.support.v7.widget.RecyclerView>
 
 
 </LinearLayout>
