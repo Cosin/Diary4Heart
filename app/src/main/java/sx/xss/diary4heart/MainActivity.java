@@ -1,6 +1,7 @@
 package sx.xss.diary4heart;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,9 +13,11 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dog.debug.hmlite.HMLite;
 import sx.xss.adapter.RecycleViewAdapter;
 import sx.xss.utils.Copyer;
+import sx.xss.utils.T;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     @BindView(R.id.recycleview)
     RecyclerView recycleview;
+    @BindView(R.id.add_post)
+    FloatingActionButton add_post;
 
 
     @Override
@@ -35,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
 
         HMLite hm = new HMLite(this, "diary4heart.db", R.raw.diary4heart);
         hm.init();
-        List<Map<String, String>> list = hm.select("select * from d4h_diary order by id desc",null);
+        List<Map<String, String>> list = hm.select("select * from d4h_diary order by id desc", null);
 
         initToolBar(toolbar, "觅心日记");
 
         recycleview.setHasFixedSize(true);
         recycleview.setLayoutManager(new LinearLayoutManager(this));
-        recycleview.setAdapter(new RecycleViewAdapter(MainActivity.this,list));
+        recycleview.setAdapter(new RecycleViewAdapter(MainActivity.this, list));
 
     }
 
@@ -55,5 +60,10 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle(title);
         toolbar.setLogo(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
+    }
+
+    @OnClick(R.id.add_post)
+    public void onClick() {
+        T.show(MainActivity.this,"lalalala",1000);
     }
 }
