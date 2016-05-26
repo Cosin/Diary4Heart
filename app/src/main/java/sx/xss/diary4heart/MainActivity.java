@@ -7,9 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
+import java.util.List;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dog.debug.hmlite.HMLite;
 import sx.xss.adapter.RecycleViewAdapter;
+import sx.xss.utils.Copyer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,11 +30,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        Copyer c = new Copyer(this);
+        c.copyer();
+
+        HMLite hm = new HMLite(this, "diary4heart.db", R.raw.diary4heart);
+        hm.init();
+        List<Map<String, String>> list = hm.select("select * from d4h_diary order by id desc",null);
+
         initToolBar(toolbar, "觅心日记");
 
         recycleview.setHasFixedSize(true);
         recycleview.setLayoutManager(new LinearLayoutManager(this));
-        recycleview.setAdapter(new RecycleViewAdapter(MainActivity.this));
+        recycleview.setAdapter(new RecycleViewAdapter(MainActivity.this,list));
 
     }
 

@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import sx.xss.diary4heart.R;
@@ -14,22 +17,17 @@ import sx.xss.diary4heart.R;
 /**
  * Created by Hm on 2016/5/25.
  */
+
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.CustomViewHolder> {
 
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
-
-    public RecycleViewAdapter(Context context) {
-        this.context = context;
-    }
-
     public Context context;
+    public List<Map<String, String>> list;
+    
 
+    public RecycleViewAdapter(Context context, List<Map<String, String>> list) {
+        this.context = context;
+        this.list = list;
+    }
 
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -39,18 +37,21 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
-        holder.test.setText("333333");
+        holder.content.setText(list.get(position).get("content"));
+        holder.time.setText(list.get(position).get("create_time"));
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return list.size();
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.test)
-        TextView test;
+        @BindView(R.id.content)
+        TextView content;
+        @BindView(R.id.time)
+        TextView time;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
