@@ -1,5 +1,6 @@
 package sx.xss.diary4heart;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.add_post)
     public void onClick() {
-        T.show(MainActivity.this,"lalalala",1000);
+        Intent i = new Intent(this,AddActivity.class);
+        startActivity(i);
     }
 }
