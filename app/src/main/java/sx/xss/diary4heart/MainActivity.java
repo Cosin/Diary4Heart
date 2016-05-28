@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void initToolBar(Toolbar toolbar, String title) {
         toolbar.setTitle(title);
-        toolbar.setLogo(R.mipmap.ic_launcher);
+        toolbar.setLogo(R.mipmap.heart);
         setSupportActionBar(toolbar);
     }
 
