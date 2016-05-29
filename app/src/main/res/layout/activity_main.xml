@@ -15,8 +15,6 @@
             android:id="@+id/recycleview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="#000"
-            android:dividerHeight="10dp"
             android:paddingBottom="15dp" />
 
         <android.support.design.widget.FloatingActionButton
