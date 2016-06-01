@@ -40,4 +40,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.3.0'
     compile files('libs/HMLiteV0.3.jar')
     compile 'com.android.support:design:23.3.0'
+    compile files('libs/nineoldandroids-2.4.0.jar')
+    compile 'com.github.sd6352051.niftydialogeffects:niftydialogeffects:1.0.0@aar'
 }

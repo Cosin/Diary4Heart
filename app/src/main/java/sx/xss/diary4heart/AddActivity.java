@@ -5,12 +5,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dog.debug.hmlite.HMLite;
+import sx.xss.utils.T;
+import sx.xss.utils.Tools;
 
 /**
  * Created by Hm on 2016/5/27.
@@ -54,8 +56,16 @@ public class AddActivity extends AppCompatActivity {
     public void onClick() {
         String content = content_tv.getText().toString();
         String emotion = emotionTv.getText().toString();
+        String time = Tools.getTime();
         HMLite hm = new HMLite(this, "diary4heart.db", R.raw.diary4heart);
         hm.init();
-        hm.insert("insert into d4h_content() values(%s,%s)",new String[]{content,emotion});
+        try {
+            hm.insert("insert into d4h_diary(content,emotion,create_time) values(?,?,?)",new String[]{content,emotion,time});
+            T.showShort(this,"添加成功！");
+            this.finish();
+        } catch (Exception e) {
+            T.showShort(this,"添加失败！");
+            e.printStackTrace();
+        }
     }
 }
