@@ -1,6 +1,7 @@
 package sx.xss.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,9 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dog.debug.hmlite.HMLite;
+import sx.xss.diary4heart.AddActivity;
 import sx.xss.diary4heart.R;
+import sx.xss.diary4heart.UpdateActivity;
 
 /**
  * Created by Hm on 2016/5/25.
@@ -39,14 +42,16 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     @Override
-    public void onBindViewHolder(final CustomViewHolder holder, int position) {
+    public void onBindViewHolder(final CustomViewHolder holder, final int position) {
         holder.content.setText(list.get(position).get("content"));
         holder.time.setText(list.get(position).get("create_time"));
         holder.pid.setText(list.get(position).get("id"));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, UpdateActivity.class);
+                intent.putExtra("id",holder.pid.getText().toString());
+                context.startActivity(intent);
             }
         });
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -63,11 +68,14 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         return list.size();
     }
 
+    //region 添加item
     public void addItem(int position, Map<String, String> item) {
         list.add(position, item);
         notifyItemInserted(position);
     }
+    //endregion
 
+    //region 删除item
     public void removeItem(final int position, final String pid) {
         final NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(context);
         dialogBuilder.withTitle("删除")
@@ -94,6 +102,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                 })
                 .show();
     }
+    //endregion
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
 
